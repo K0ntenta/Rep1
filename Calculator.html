@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Title</title>
+</head>
+<style>
+	body{
+		background-color: #ccccff;
+		user-select: none;
+	}
+	.container{
+		display: grid;
+		margin: auto;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-gap: 4px;
+		background-color: #666666;
+        padding: 4px;
+		border-radius: 5px;
+		max-width: 480px;
+		font-family: times;
+	}
+	.item{
+		background-color: ghostwhite;
+		color: black;
+		padding: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 40px;
+		cursor: pointer;
+		font-weight: bold;
+        border-radius: 2px;
+        box-shadow: 0px 1px 3px;
+        transition: all 200ms ease-out;
+	}
+    .item:hover{
+        box-shadow: 0px 0px 0px 2px #f90914,
+        0px 0px 0px 4px #a7f9c9,
+        0px 0px 0px 4px #f90914,
+        0px 0px 5px 4px #ff4d00;
+    }
+	form{
+		max-width: 100%;
+	}
+	input{
+		width: 99%;
+		height: 120px;
+		border:none;
+		font-size: 40px;
+		outline: none;
+		text-align: center;
+	}
+	.input{
+		grid-column: 1/-1;
+		padding: 0;
+	}
+	.clean{
+		grid-column: 1/3;
+		background-color: indianred;
+	}
+	.back{
+		grid-column: 3/-1;
+	}
+	.equal{
+		grid-column: 4;
+		grid-row: 6/8;
+		background-color: forestgreen;
+	}
+	.zero{
+		grid-column: 1/3;
+	}
+
+</style>
+<body>
+	<div class="container">
+		<div class="item input"><form name="form"><input type="text" name="textview" ></form></div>
+		<div class="item clean" onclick="clean()">C</div>
+		<div class="item back" onclick="back()">&larr;</div>
+		<div class="item" onclick="insert('+')">+</div>
+		<div class="item" onclick="insert('-')">-</div>
+		<div class="item" onclick="insert('*')">&times;</div>
+		<div class="item" onclick="insert('/')">&divide;</div>
+		<div class="item" onclick="insert('7')">7</div>
+		<div class="item" onclick="insert('8')">8</div>
+		<div class="item" onclick="insert('9')">9</div>
+		<div class="item" onclick="insert('(')">(</div>
+		<div class="item" onclick="insert('4')">4</div>
+		<div class="item" onclick="insert('5')">5</div>
+		<div class="item" onclick="insert('6')">6</div>
+		<div class="item" onclick="insert(')')">)</div>
+		<div class="item" onclick="insert('1')">1</div>
+		<div class="item" onclick="insert('2')">2</div>
+		<div class="item" onclick="insert('3')">3</div>
+		<div class="item equal" onclick="equal()">=</div>
+		<div class="item zero" onclick="insert('0')">0</div>
+		<div class="item" onclick="insert('.')">.</div>
+	</div>
+	<script>
+		function insert(num){
+			document.form.textview.value = document.form.textview.value + num;
+		}
+		function clean(){
+			document.form.textview.value = "";
+		}
+		function back(){
+			let exp = document.form.textview.value;
+			document.form.textview.value = exp.substring(0, exp.length-1);
+		}
+		function equal(){
+			let exp = document.form.textview.value;
+			if (exp){
+				document.form.textview.value = eval(exp);
+			}
+		}
+	</script>
+</body>
+</html>
